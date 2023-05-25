@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Th Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dependencies
+
+Install yarn, node, mongodb through your platform's package manager.
 
 ## Available Scripts
 
-In the project directory, you can run:
+### `yarn install`
+
+Install dependencies.
 
 ### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `node server.mjs`
 
-### `yarn test`
+Starts the websocket server at [http://localhost:4000](http://localhost:4000).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technical Overview
 
-### `yarn build`
+I focused on the three primary requirements.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Client
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+There is a single default chat room. Client-side, there are two primary
+data structures: a list of `messages`, and a map of `users`. These two
+are related to each other through the `username` field. The client
+picks a random username and color which is persisted server side once
+a message is sent.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Server
 
-### `yarn eject`
+The server uses socket.io and mongodb to persist messages and user data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Events
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+There are four client and server events managed through a websocket:
+* `init`: fetch of initial message and user data from the server
+* `init.done`: initial data is returned and user data from the server
+* `message.new`: new message is sent
+* `message.ack`: new message and user data is broadcast to all clients
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Time Worked
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+10-12 hours
