@@ -63,7 +63,7 @@ async function run() {
             messagesCollection.insertOne(newMessage);
             const user = await usersCollection.findOne({username: newMessage.username});
             const data = {user: await getUsersMap([user]), message: newMessage};
-            io.emit('message.sent', data);
+            io.emit('message.ack', data);
         });
     });
 
