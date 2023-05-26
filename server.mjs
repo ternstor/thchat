@@ -1,25 +1,14 @@
-// const express = require('express');
-// const app = express();
-// const http = require('http');
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const { MongoClient } = require("mongodb");
-
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { MongoClient } from 'mongodb';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
+import { cors } from './src/socket.mjs';
 
 const app = express();
 const server = http.createServer(app);
-
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000"
+    origin: cors
   }
 });
 

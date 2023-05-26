@@ -2,7 +2,7 @@ import React from 'react';
 import {uniqueNamesGenerator, colors, animals} from 'unique-names-generator';
 import {formatRelative} from 'date-fns'
 import './App.css';
-import { socket } from './socket';
+import { socket } from './socket.mjs';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const randomColor = require('randomcolor');
@@ -18,7 +18,6 @@ type Users = Record<string, User>;
 
 function App() {
   const [isConnected, setIsConnected] = React.useState(socket.connected);
-  // const [messageEvents, setMessageEvents] = React.useState([]);
 
   const uniqueUserName = uniqueNamesGenerator({dictionaries: [colors, animals]})
 
